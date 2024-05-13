@@ -43,30 +43,31 @@
         </div>
         <div class="main-details">
           <div class="main-details-inn">
-          <div class="display-flex rate-list">
-            <div class="flex">
-              <p class="top" id="baseRate">2.88%</p>
-              <p>基准费率</p>
+            <div class="display-flex rate-list">
+              <div class="flex">
+                <p class="top" id="baseRate">2.88%</p>
+                <p>基准费率</p>
+              </div>
+              <div class="flex">
+                <p class="top" id="riskRate">6.0%</p>
+                <p>风险费率</p>
+              </div>
+              <div class="flex">
+                <p class="top" id="combinedBillingRate">8.88%</p>
+                <p>合计费率</p>
+              </div>
             </div>
-            <div class="flex">
-              <p class="top" id="riskRate">6.0%</p>
-              <p>风险费率</p>
-            </div>
-            <div class="flex">
-              <p class="top" id="combinedBillingRate">8.88%</p>
-              <p>合计费率</p>
+            <div class="display-flex score">
+              <div class="flex">
+                <p class="top-num" id="score">135</p>
+                <p>客户最终得分</p>
+              </div>
+              <div class="flex">
+                <p class="top-num" id="level">D</p>
+                <p>风险评测等级</p>
+              </div>
             </div>
           </div>
-          <div class="display-flex score">
-            <div class="flex">
-              <p class="top-num" id="score">135</p>
-              <p>客户最终得分</p>
-            </div>
-            <div class="flex">
-              <p class="top-num" id="level">D</p>
-              <p>风险评测等级</p>
-            </div>
-          </div></div>
         </div>
 
         <div class="details-list">
@@ -234,17 +235,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media only screen and (min-width: 480px) {
+  html {
+    font-size: 25.6px !important;
+  }
+}
+@media only screen and (min-width: 414px) {
+  html {
+    font-size: 22.08px !important;
+  }
+}
+@media only screen and (min-width: 400px) {
+  html {
+    font-size: 21.33px !important;
+  }
+}
+html {
+  font-family: "Source Han Sans CN";
+  line-height: 1.6;
+}
 /*通配符号让所有标签的margin和padding为0*/
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
 .body {
-  font-family: HarmonyOS_Sans_SC_Black;
+  font-family: "Source Han Sans CN";
+
   width: 100%;
   // background-image: url('../assets/bac1.png');
   min-width: 750px;
@@ -262,7 +284,7 @@ a {
   position: relative;
   width: 100%;
   padding: 25px 22px 0;
-  height: 167px;
+  height: 227px;
   background: url("../assets/bg-top.png") no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
@@ -274,22 +296,22 @@ a {
   color: #fff;
   text-align: center;
 }
-.result-wrap .grade  {
-//  background: blue;
-display: flex;
-align-items: center;
+.result-wrap .grade {
+  //  background: blue;
+  display: flex;
+  align-items: center;
 }
 .result-wrap .grade img {
   // background: #760402;
 
-  width: 57px;
-  height: 55px;
+  width: 85.5px;
+  height: 82.5px;
   margin-right: 22px;
   display: inline-block;
   vertical-align: middle;
 }
 .result-wrap .grade span {
-  font-size: 20px;
+  font-size: 27px;
   color: #fff;
   font-weight: bold;
 }
@@ -307,29 +329,31 @@ align-items: center;
 .result-wrap .main-details {
   position: relative;
   z-index: 99;
-  height: 132px;
+  height: 192px;
   margin: -38px 23px 0;
-  padding: 13px 0 25px;
+  // padding: 13px 0 25px;
   background: url("../assets/bg-center.png") no-repeat;
   background-size: 100% 100%;
-  font-size: 13px;
+  font-size: 18px;
+  font-family: "Source Han Sans CN";
+  // font-weight: 50;
   color: #343434;
   text-align: center;
   line-height: 13px;
 }
 .result-wrap .main-details-inn {
- width: 100%;
- height: 100%;
-//  background: blue;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
+  width: 100%;
+  height: 100%;
+  // background: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .result-wrap .rate-list {
-   width: 50%;
+  width: 70%;
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
 }
 .display-flex {
   // display: -webkit-box;
@@ -348,30 +372,28 @@ p {
   margin-inline-end: 0px;
   unicode-bidi: isolate;
 }
-.result-wrap .score  {
+.result-wrap .score {
   width: 50%;
   display: flex;
-justify-content: space-between;
-  
+  justify-content: space-between;
 }
 .result-wrap .score .top-num {
   font-size: 25px;
   color: #760402;
   line-height: 25px;
   margin-bottom: 8px;
-  
 }
 .result-wrap .details-list {
   margin: 24px 28px;
   border-radius: 4px;
   overflow: hidden;
- 
 }
 .details-list .list-item {
   background: #f8f8f8;
   padding: 0 14px;
   text-align: left;
   line-height: 37px;
+  height: 37px;
   margin-bottom: 1px;
   justify-content: space-between;
 }
@@ -386,5 +408,14 @@ justify-content: space-between;
   font-size: 18px;
   color: #343434;
   font-weight: bold;
+  font-family: "Source Han Sans CN";
+}
+.details-list .list-item .list-db {
+  font-size: 12px;
+  color: #343434;
+}
+.details-list .list-item .list-fb {
+  font-size: 12px;
+  color: #fd801c;
 }
 </style>
