@@ -19,6 +19,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 
+
 export default {
   data() {
     return {
@@ -29,12 +30,13 @@ export default {
     };
   },
   mounted() {
-    // this.isheight()
+   
   },
   methods: {
     goFirst() {
       this.$router.push("/first");
-    }
+    },
+   
   },
   created() {},
 

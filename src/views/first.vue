@@ -31,7 +31,7 @@
               placeholder="请输入身份证号"
               type="text"
               size="medium"
-              v-model="idcar"
+              v-model="identity"
               clearable
               maxlength="18"
             >
@@ -49,12 +49,13 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-
+import { reqAddClient } from "@/api/website";
 export default {
   data() {
     return {
-      name: "",
-      idcar: "",
+         name: "",
+        identity: "",
+      
     };
   },
   mounted() {
@@ -66,11 +67,25 @@ export default {
         this.$message.error("请输入您的姓名");
         return;
       }
-      if (!this.idcar) {
+      if (!this.identity) {
         this.$message.error("请输入您的身份证号");
         return;
       }
-      this.$router.push("/formList");
+      if (this.name && this.identity) {
+        this.addClient();
+      }
+    },
+
+    async addClient() {
+      try {
+        // console.log(111);
+        const result = await reqAddClient({name:this.name,identity:this.identity});
+
+        this.$router.push("/formList");
+      } catch (error) {
+        
+        return;
+      }
     },
   },
   created() {},

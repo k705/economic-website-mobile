@@ -41,6 +41,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import { reqParameter } from "@/api/website";
 
 export default {
   data() {
@@ -52,7 +53,7 @@ export default {
       list2: [
         {
           id: "000",
-          list: [
+          assessAnswer: [
             { id: "11", anames: "备选项1", pcStatus: null },
             { id: "12", anames: "备选项2", pcStatus: null },
             { id: "13", anames: "备选项3", pcStatus: null },
@@ -60,7 +61,7 @@ export default {
         },
         {
           id: "001",
-          list: [
+          assessAnswer: [
             { id: "14", anames: "备选项4", pcStatus: 1 },
             { id: "15", anames: "备选项5", pcStatus: null },
             { id: "16", anames: "备选项6", pcStatus: null },
@@ -68,7 +69,7 @@ export default {
         },
         {
           id: "002",
-          list: [
+          assessAnswer: [
             { id: "11", anames: "备选项1", pcStatus: null },
             { id: "12", anames: "备选项2", pcStatus: null },
             { id: "13", anames: "备选项3", pcStatus: null },
@@ -78,19 +79,23 @@ export default {
     };
   },
   mounted() {
-    // this.isheight()
+   this.addClient()
   },
   methods: {
-    handleRadioChange() {
-      // if (!this.radio2) {
-      //   // 提示用户输入
-      //   alert('请输入您的年龄');
-      // }
-      console.log(this.radio2);
+     async addClient() {
+      try {
+        const result = await reqParameter();
+        this.list2 =result.data.rows
+      console.log( this.list2);
+        // this.$router.push("/result");
+      } catch (error) {
+        // console.log(chalk.redBright(error));
+      }
     },
+
     goResult() {
-      console.log(this.formData);
-      this.$router.push("/result");
+       
+      // this.$router.push("/result");
     },
     // 赋值
     handCheck() {
@@ -111,7 +116,7 @@ export default {
     handleRadioChanges(item, id) {
       this.writeText2 = item;
       this.writeText3 = id;
-      item.list.forEach((res) => {
+      item.assessAnswer.forEach((res) => {
         if (res.id === id) {
           res.pcStatus = 1;
         } else {

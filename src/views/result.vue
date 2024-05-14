@@ -214,7 +214,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-
+import { reqCompute } from "@/api/website";
 export default {
   data() {
     return {
@@ -225,9 +225,18 @@ export default {
     };
   },
   mounted() {
-    // this.isheight()
+    // this.compute()
   },
-  methods: {},
+  methods: {
+     async compute() {
+      try {
+        const result = await reqCompute(1,[{tid:1,aid:4}]);
+        // this.$router.push("/formList");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
   created() {},
 
   destroyed() {},
