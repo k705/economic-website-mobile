@@ -361,27 +361,31 @@ a {
   // display: -webkit-flex;
   display: flex;
 }
-.result-wrap .rate-list .top {
-  margin-bottom: 5px;
-}
 p {
+  font-size: 21px;
   display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  // margin-block-start: 1em;
+  // margin-block-end: 1em;
+  // margin-inline-start: 0px;
+  // margin-inline-end: 0px;
   unicode-bidi: isolate;
 }
+.result-wrap .rate-list .top {
+  margin-bottom: 16px;
+  font-size: 25px;
+}
+
 .result-wrap .score {
   width: 50%;
   display: flex;
   justify-content: space-between;
 }
 .result-wrap .score .top-num {
-  font-size: 25px;
+  font-size: 28px;
   color: #760402;
-  line-height: 25px;
+  line-height: 28px;
   margin-bottom: 8px;
+  margin-top: 22px;
 }
 .result-wrap .details-list {
   margin: 24px 28px;

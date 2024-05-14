@@ -12,34 +12,34 @@
         <div class="form-wrap">
           <div class="form-list display-flex">
             <div class="left-lable">您的姓名</div>
-            <div class="right-input flex">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="请输入"
-                v-model="name"
-              />
-            </div>
+
+            <el-input
+              class="el-input"
+              placeholder="请输入姓名"
+              type="text"
+              size="medium"
+              v-model="name"
+              clearable
+            >
+            </el-input>
           </div>
           <div class="form-list display-flex">
             <div class="left-lable">身份证号</div>
-            <div class="right-input flex">
-              <input
-                type="text"
-                name="idcar"
-                placeholder="请输入"
-                id="idCard"
-                v-model="idcar"
-                maxlength="18"
-              />
-            </div>
+
+            <el-input
+              class="el-input"
+              placeholder="请输入身份证号"
+              type="text"
+              size="medium"
+              v-model="idcar"
+              clearable
+              maxlength="18"
+            >
+            </el-input>
           </div>
         </div>
         <div class="next-step">
-          <button type="button" id="nextStep" @click="goFormList">
-            下一步
-          </button>
+          <el-button type="primary" @click="goFormList">下一步</el-button>
         </div>
       </div>
     </div>
@@ -157,14 +157,22 @@ a {
   padding: 26px;
   font-size: 18px;
   color: #333;
+  // background-color: #ff0000;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 }
 .form-list {
   margin-top: 40px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #999;
   margin-bottom: 20px;
   font-size: 25px;
 }
+.form-list .el-input {
+  width: 500px;
+  margin-left: 20px;
+}
+
 .display-flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -202,11 +210,19 @@ a {
   text-indent: -60px;
   font-size: 23px;
 }
+:deep(.el-input--medium .el-input__inner) {
+  height: 50px;
+  font-size: 18px;
+}
 .next-step {
-  padding: 2px 28px 0;
+  position: fixed;
+  top: 350px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  // padding: 2px 28px 0;
 }
 .next-step button {
-  width: 100%;
+  width: 80vw;
   height: 58px;
   line-height: 46px;
   font-size: 23px;
