@@ -34,36 +34,34 @@
               style="display: none"
               alt=""
             />
-            <span id="levelA" style="display: none">较低风险</span>
-            <span id="levelB" style="display: none">稍有风险</span>
-            <span id="levelC" style="display: none">一般风险</span>
-            <span id="levelD" style="">显著风险</span>
-            <span id="levelE" style="display: none">较高风险</span>
+            <span id="levelA">{{ AssessRate.tips }}</span>
           </div>
         </div>
         <div class="main-details">
           <div class="main-details-inn">
             <div class="display-flex rate-list">
               <div class="flex">
-                <p class="top" id="baseRate">2.88%</p>
+                <p class="top" id="baseRate">{{ AssessRate.basics }}</p>
                 <p>基准费率</p>
               </div>
               <div class="flex">
-                <p class="top" id="riskRate">6.0%</p>
+                <p class="top" id="riskRate">{{ AssessRate.risk }}</p>
                 <p>风险费率</p>
               </div>
               <div class="flex">
-                <p class="top" id="combinedBillingRate">8.88%</p>
+                <p class="top" id="combinedBillingRate">
+                  {{ AssessRate.risk }}
+                </p>
                 <p>合计费率</p>
               </div>
             </div>
             <div class="display-flex score">
               <div class="flex">
-                <p class="top-num" id="score">135</p>
+                <p class="top-num" id="score">{{ AssessRate.maxs }}</p>
                 <p>客户最终得分</p>
               </div>
               <div class="flex">
-                <p class="top-num" id="level">D</p>
+                <p class="top-num" id="level">{{ AssessRate.grad }}</p>
                 <p>风险评测等级</p>
               </div>
             </div>
@@ -76,134 +74,15 @@
             <span>得分明细</span>
           </div>
 
-          <div class="list-item display-flex">
-            <div class="list-db flex">1.身份认证 : 通过</div>
-            <div class="list-fb" style="color: #03de06">+100分</div>
-          </div>
-
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer15">
-              2.年龄：20岁以下，60岁以上（含20岁和60岁）
+          <div
+            class="list-item display-flex"
+            v-for="(item, index) of assessSourList"
+            :key="index"
+          >
+            <div class="list-db flex">
+              {{ index + 1 }}.{{ item.explain }} : {{ item.answer }}
             </div>
-            <div
-              class="list-fb"
-              id="fractions15"
-              style="color: rgb(253, 128, 28)"
-            >
-              -10分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer16">3.婚姻状态 : 已婚</div>
-            <div class="list-fb" id="fractions16" style="color: rgb(3, 222, 6)">
-              +10分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer17">
-              4.配偶和家人能否知晓贷款 : 配偶跟家人均能知晓
-            </div>
-            <div class="list-fb" id="fractions17" style="color: rgb(3, 222, 6)">
-              +10分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer18">
-              5.本地可交易房产价值 :无本地可交易房产
-            </div>
-            <div class="list-fb" id="fractions18" style="color: rgb(3, 222, 6)">
-              +0分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer19">
-              6.本地车产价值 :无本地车产
-            </div>
-            <div class="list-fb" id="fractions19" style="color: rgb(3, 222, 6)">
-              +0分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer20">
-              7.个人投保年交额 ：无投保保单
-            </div>
-            <div class="list-fb" id="fractions20" style="color: rgb(3, 222, 6)">
-              +0分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer21">
-              8.公积金月缴额 ：无公积金
-            </div>
-            <div class="list-fb" id="fractions21" style="color: rgb(3, 222, 6)">
-              +0分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer22">
-              9.所在单位性质 ：民营、外企
-            </div>
-            <div class="list-fb" id="fractions22" style="color: rgb(3, 222, 6)">
-              +5分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer23">
-              10.个人征信非贷后管理查询次数 ：5~10（含5）
-            </div>
-            <div class="list-fb" id="fractions23" style="color: rgb(3, 222, 6)">
-              +0分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer24">
-              11.个人名下非银行贷款笔数 ：无
-            </div>
-            <div class="list-fb" id="fractions24" style="color: rgb(3, 222, 6)">
-              +5分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer25">
-              12.个人房产负债率 ：有房无负债
-            </div>
-            <div class="list-fb" id="fractions25" style="color: rgb(3, 222, 6)">
-              +10分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer26">
-              13.个人征信逾期月份数 ：0
-            </div>
-            <div class="list-fb" id="fractions26" style="color: rgb(3, 222, 6)">
-              +5分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer27">
-              14.信用卡情况 ：3张以内且半年使用率小于80%
-            </div>
-            <div class="list-fb" id="fractions27" style="color: rgb(3, 222, 6)">
-              +5分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer28">15.单位能否接电话 ：否</div>
-            <div
-              class="list-fb"
-              id="fractions28"
-              style="color: rgb(253, 128, 28)"
-            >
-              -10分
-            </div>
-          </div>
-          <div class="list-item display-flex">
-            <div class="list-db flex" id="answer29">
-              16.家里单位能否下户 ：单位跟家里均能下户
-            </div>
-            <div class="list-fb" id="fractions29" style="color: rgb(3, 222, 6)">
-              +5分
-            </div>
+            <div class="list-fb"  :style="{ color: item.goal < 0 ? 'red' : '#03de06' }">{{ item.goal }}分</div>
           </div>
         </div>
       </div>
@@ -218,19 +97,57 @@ import { reqCompute } from "@/api/website";
 export default {
   data() {
     return {
-      isdownload: false,
-      islogin: false,
-      iscon: false,
-      // iscopyright:false
+      assessSourList: [],
+      reslist: [],
+      AssessRate: {},
     };
   },
   mounted() {
     // this.compute()
+    console.log(this.$route.params.array, "???");
+    // console.log(
+    //   this.$route.params.array.map((i) => Object.assign({}, i)),
+    //   "shuzu"
+    // );
+    // let selectedAnswers = JSON.parse(this.$route.params.array);
+    // let selectedAnswers = JSON.stringify(this.$route.params.array);
+    // let selectedAnswers = this.$route.params.array.map((i) =>
+    //   Object.assign({}, i)
+    // );
+
+    //  selectedAnswers = JSON.parse(selectedAnswers);
+
+    // let selectedAnswers =[...this.$route.params.array];
+    // console.log(selectedAnswers, "666");
+
+    if (this.$route.params.array) {
+      // 使用传递过来的reslist数据
+      // this.reslist = JSON.parse(JSON.stringify(selectedAnswers));
+      // this.reslist = this.$route.params.array.map((i) => Object.assign({}, i));
+      this.compute();
+      // console.log(reslist,'222');
+      // 进行其他初始化操作...
+    }
   },
   methods: {
-     async compute() {
+    async compute() {
       try {
-        const result = await reqCompute(1,[{tid:1,aid:4}]);
+        console.log(this.reslist, "3333");
+        console.log([
+          { tid: 1, aid: 9 },
+          { tid: 2, aid: 13 },
+          { tid: 3, aid: 16 },
+          { tid: 4, aid: 21 },
+        ]);
+        const result = await reqCompute(1, this.$route.params.array.map((i) => Object.assign({}, i)));
+        // const result = await reqCompute(1, this.$route.params.array);
+
+        // const result = await reqCompute(1, [{tid: 1, aid: 9}, {tid: 2, aid: 13}, {tid: 3, aid: 16}, {tid: 4, aid: 21}]);
+        console.log(result);
+
+        this.assessSourList = result.data.data.assessSourList;
+        this.AssessRate = result.data.data.AssessRate;
+
         // this.$router.push("/formList");
       } catch (error) {
         console.log(error);
@@ -294,7 +211,14 @@ a {
   width: 100%;
   padding: 25px 22px 0;
   height: 227px;
-  background: url("../assets/bg-top.png") no-repeat;
+  // background: rgba(64, 158, 255, 1);
+  //  background: linear-gradient(
+  //   0deg,
+  //   rgb(68, 150, 231) 0%,
+  //   rgba(64, 158, 255, 1) 100%
+  // );
+    background: linear-gradient(to bottom, rgb(136, 217, 244), rgb(16, 121, 226));
+  box-shadow: 0px 3px 5px 0px #b0b0b0;
   background-size: 100% 100%;
   overflow: hidden;
 }
@@ -318,6 +242,7 @@ a {
   margin-right: 22px;
   display: inline-block;
   vertical-align: middle;
+ 
 }
 .result-wrap .grade span {
   font-size: 27px;
@@ -332,7 +257,7 @@ a {
   z-index: 9;
   width: 136px;
   height: 169px;
-  background: url("../assets/bg-right.png") no-repeat;
+  // background: url("../assets/bg-right.png") no-repeat;
   background-size: 100% 100%;
 }
 .result-wrap .main-details {
@@ -341,7 +266,9 @@ a {
   height: 192px;
   margin: -38px 23px 0;
   // padding: 13px 0 25px;
-  background: url("../assets/bg-center.png") no-repeat;
+    background: linear-gradient(to bottom, rgb(208, 235, 245), rgb(64, 158, 255, 1));
+
+  border-radius: 20px;
   background-size: 100% 100%;
   font-size: 18px;
   font-family: "Source Han Sans CN";
@@ -391,7 +318,7 @@ p {
 }
 .result-wrap .score .top-num {
   font-size: 28px;
-  color: #760402;
+  color: #ad2926;
   line-height: 28px;
   margin-bottom: 8px;
   margin-top: 22px;

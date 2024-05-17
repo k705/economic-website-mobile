@@ -13,16 +13,16 @@
           <div class="radio-wrap" id="radio2">
             <!-- <p>radioArray：{{ form.radioArray }}</p> -->
             <div v-for="(item, index) of list2" :key="index">
-              <h4 class="title">2.年龄</h4>
+              <h4 class="title">{{index+1}}.{{item.explain}}</h4>
               <el-radio-group v-model="form.radioArray[index]">
                 <el-radio
-                  v-for="it of item.list"
-                  :key="it.id"
-                  :label="it.id"
+                  v-for="it of item.assessAnswer"
+                  :key="it.aid"
+                  :label="it.aid"
                   class="el-radio"
-                  @change="handleRadioChanges(item, it.id)"
+                  @change="handleRadioChanges(item, it.aid)"
                 >
-                  {{ it.anames }}
+                  {{ it.answer }}
                 </el-radio>
               </el-radio-group>
             </div>
@@ -50,43 +50,59 @@ export default {
         radioArray: [],
       },
       reslist: [],
+      selectedAnswers:[],
       list2: [
         {
           id: "000",
+          explain: "年龄",
+          createTime: null,
           assessAnswer: [
-            { id: "11", anames: "备选项1", pcStatus: null },
-            { id: "12", anames: "备选项2", pcStatus: null },
-            { id: "13", anames: "备选项3", pcStatus: null },
-          ],
-        },
-        {
-          id: "001",
-          assessAnswer: [
-            { id: "14", anames: "备选项4", pcStatus: 1 },
-            { id: "15", anames: "备选项5", pcStatus: null },
-            { id: "16", anames: "备选项6", pcStatus: null },
-          ],
-        },
-        {
-          id: "002",
-          assessAnswer: [
-            { id: "11", anames: "备选项1", pcStatus: null },
-            { id: "12", anames: "备选项2", pcStatus: null },
-            { id: "13", anames: "备选项3", pcStatus: null },
+            {
+              aid: 9,
+              tid: null,
+              answer: "20岁以下，60岁以上（含20岁和60岁）",
+              scor: null,
+              aas: null,
+              creatreTime: null,
+            },
+            {
+              aid: 8,
+              tid: null,
+              answer: "20-25,55-60岁（含25岁和55岁）",
+              scor: null,
+              aas: null,
+              creatreTime: null,
+            },
+            {
+              aid: 7,
+              tid: null,
+              answer: "25-55岁",
+              scor: null,
+              aas: null,
+              creatreTime: null,
+            },
+            {
+              aid: 6,
+              tid: null,
+              answer: "30-48岁",
+              scor: null,
+              aas: null,
+              creatreTime: null,
+            },
           ],
         },
       ],
     };
   },
   mounted() {
-   this.addClient()
+    this.addClient();
   },
   methods: {
-     async addClient() {
+    async addClient() {
       try {
         const result = await reqParameter();
-        this.list2 =result.data.rows
-      console.log( this.list2);
+        this.list2 = result.data.rows;
+        console.log(this.list2);
         // this.$router.push("/result");
       } catch (error) {
         // console.log(chalk.redBright(error));
@@ -94,48 +110,89 @@ export default {
     },
 
     goResult() {
-       
-      // this.$router.push("/result");
-    },
+  // 遍历list2来检查每个问题是否都有选择
+  const unselectedItems = this.list2.filter((item, index) => !this.form.radioArray[index]).reverse();
+
+  if (unselectedItems.length > 0) {
+    // 如果有未选择的项，弹出提示
+    unselectedItems.forEach(item => {
+      this.$alert(`请选择*${item.explain}`, '提示', {
+        confirmButtonText: '确定',
+      });
+    });
+  } else {
+    console.log(this.reslist,'111');
+    // 所有选项都被选择，使用state传递reslist并跳转到结果页面
+    this.$router.push({
+      name: 'result',
+      params: { array: this.selectedAnswers} , // 直接传递reslist数组
+      // params: { array:[{tid: 1, aid: 9}, {tid: 2, aid: 13}, {tid: 3, aid: 16}, {tid: 4, aid: 21}] } , // 直接传递reslist数组
+    });
+  }
+},
     // 赋值
-    handCheck() {
-      const aaa = [];
-      this.list2.forEach((item, index) => {
-        item.list.forEach((it) => {
-          if (it.pcStatus === 1) {
-            aaa.push(it.id);
-          }
-        });
-        if (aaa.length !== index + 1) {
-          aaa.push(null);
-        }
-      });
-      this.form.radioArray = aaa;
-    },
+    // handCheck() {
+    //   const aaa = [];
+    //   this.list2.forEach((item, index) => {
+    //     item.list.forEach((it) => {
+    //       if (it.pcStatus === 1) {
+    //         aaa.push(it.id);
+    //       }
+    //     });
+    //     if (aaa.length !== index + 1) {
+    //       aaa.push(null);
+    //     }
+    //   });
+    //   this.form.radioArray = aaa;
+    // },
     // 取值
-    handleRadioChanges(item, id) {
-      this.writeText2 = item;
-      this.writeText3 = id;
-      item.assessAnswer.forEach((res) => {
-        if (res.id === id) {
-          res.pcStatus = 1;
-        } else {
-          res.pcStatus = 0;
-        }
-      });
-      this.reslist.push(item);
-      let newArry = this.reslist;
-      //数组去重选择最后一条数据
-      for (var i = 0; i < newArry.length; i++) {
-        for (var j = i + 1; j < newArry.length; j++) {
-          if (newArry[i].id == newArry[j].id) {
-            newArry.splice(i, 1);
-            j--;
-          }
-        }
-      }
-      this.reslist = newArry;
-    },
+    // handleRadioChanges(item, id) {
+    //   // console.log(item, id);
+    //   this.writeText2 = item;
+    //   this.writeText3 = id;
+    //   item.assessAnswer.forEach((res) => {
+    //     if (res.aid === id) {
+    //       res.pcStatus = 1;
+    //     } else {
+    //       res.pcStatus = 0;
+    //     }
+    //   });
+    //   this.reslist.push(item);
+    //   let newArry = this.reslist;
+    //   //数组去重选择最后一条数据
+    //   for (var i = 0; i < newArry.length; i++) {
+    //     for (var j = i + 1; j < newArry.length; j++) {
+    //       if (newArry[i].id == newArry[j].id) {
+    //         newArry.splice(i, 1);
+    //         j--;
+    //       }
+    //     }
+    //   }
+    //   this.reslist = newArry;
+    //   // console.log( this.reslist );
+    // },
+    handleRadioChanges(item, selectedAid) {
+  // 更新当前选中项的状态
+  item.assessAnswer.forEach(res => {
+    res.pcStatus = res.aid === selectedAid ? 1 : 0;
+  });
+
+  // 获取当前问题的id和选中的aid，组成一个对象
+  const selectedItem = {
+    tid:item.id,
+    aid:selectedAid,
+  };
+
+  // 添加到结果数组，同时确保不重复（基于tid和selectedAid的组合）
+  if (!this.selectedAnswers.some(answer => 
+    answer.tid === selectedItem.tid && 
+    answer.aid === selectedItem.aid)) {
+    this.selectedAnswers.push(selectedItem);
+  }
+
+  // 这里无需去重reslist，因为我们实际上是在维护selectedAnswers数组
+  // console.log(this.selectedAnswers);
+}
   },
   created() {},
 
