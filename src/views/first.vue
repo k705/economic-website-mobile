@@ -17,7 +17,7 @@
               class="el-input"
               placeholder="请输入姓名"
               type="text"
-              size="medium"
+            
               v-model="name"
               clearable
             >
@@ -30,7 +30,7 @@
               class="el-input"
               placeholder="请输入身份证号"
               type="text"
-              size="medium"
+            
               v-model="identity"
               clearable
               maxlength="18"
@@ -97,21 +97,21 @@ export default {
 <style lang="scss" scoped>
 @media only screen and (min-width: 480px) {
   html {
-    font-size: 25.6px !important;
+    font-size: 28px !important;
   }
 }
 @media only screen and (min-width: 414px) {
   html {
-    font-size: 22.08px !important;
+    font-size: 25px !important;
   }
 }
 @media only screen and (min-width: 400px) {
   html {
-    font-size: 21.33px !important;
+    font-size: 23px !important;
   }
 }
 html {
-  font-size: 20px;
+  font-size: 25px;
   font-family: "Source Han Sans CN";
   line-height: 1.6;
 }
@@ -140,14 +140,14 @@ a {
 }
 .harder {
   font-weight: bold;
-  font-size: 23px;
+  font-size: 28px;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 99;
   width: 100%;
-  height: 68px;
+  height: 88px;
   padding: 0 30px;
   line-height: 48px;
   text-align: center;
@@ -163,31 +163,35 @@ a {
   box-shadow: 0px 3px 5px 0px #b0b0b0;
 }
 .harder .title {
-  font-size: 18px;
+  font-size: 30px;
   color: #fff;
 }
 .form-wrap {
   // width: 539px;
   // height: 582px;
   padding: 26px;
-  font-size: 18px;
+  font-size: 25px;
   color: #333;
+  margin-top: 30px;
   // background-color: #ff0000;
   // display: flex;
   // flex-direction: column;
   // align-items: center;
 }
 .form-list {
-  margin-top: 40px;
+  margin-top: 50px;
   padding-bottom: 15px;
   margin-bottom: 20px;
-  font-size: 25px;
+  font-size: 30px;
 }
 .form-list .el-input {
   width: 500px;
   margin-left: 20px;
 }
-
+::v-deep .el-input--suffix .el-input__inner {
+    height: 70px;
+    font-size: 29px;
+}
 .display-flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -223,24 +227,24 @@ a {
   border: none;
   text-align: center;
   text-indent: -60px;
-  font-size: 23px;
+  font-size: 25px;
 }
-:deep(.el-input--medium .el-input__inner) {
-  height: 50px;
-  font-size: 18px;
-}
+// :deep(.el-input--medium .el-input__inner) {
+//   height: 50px;
+//   font-size: 18px;
+// }
 .next-step {
   position: fixed;
-  top: 350px;
+  top: 450px;
   left: 50%;
   transform: translate(-50%, 0);
   // padding: 2px 28px 0;
 }
 .next-step button {
   width: 80vw;
-  height: 58px;
+  height: 80px;
   line-height: 46px;
-  font-size: 23px;
+  font-size: 27px;
   font-weight: bold;
   border-radius: 4px;
   color: #fff;

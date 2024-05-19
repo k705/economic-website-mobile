@@ -4,7 +4,8 @@ import { MessageBox, Message } from 'element-ui'
 
 // create an axios instance
 const service = axios.create({
-  baseURL:'http://aaa.gwlxs.cn/prod-api/assess', // url = base url + request url
+  //baseURL:'http://aaa.gwlxs.cn/prod-api/assess', // url = base url + request url
+  baseURL:'http://120.26.218.222:8888/prod-api/assess',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })

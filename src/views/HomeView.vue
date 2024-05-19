@@ -79,7 +79,7 @@ a {
 .body {
   font-family: HarmonyOS_Sans_SC_Black;
   width: 100%;
-  background-image: url("../assets/bac1.png");
+  background-image: url("../assets/bac1.jpg");
   min-width: 750px;
   // height: 100vh;
   min-height: 100vh;
@@ -96,7 +96,7 @@ a {
   width: 45%;
   position: absolute;
   z-index: 99;
-  top: 32%;
+  top: 35%;
   left: 27%;
 }
 .test-btn {

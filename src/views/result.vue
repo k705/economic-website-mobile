@@ -9,31 +9,9 @@
             <!--            <p>风险等级评测结果</p>-->
           </div>
           <div class="grade">
-            <img
-              src="../assets/Grade-1.png"
-              id="imgA"
-              style="display: none"
-              alt=""
-            />
-            <img
-              src="../assets/Grade-2.png"
-              id="imgB"
-              style="display: none"
-              alt=""
-            />
-            <img
-              src="../assets/Grade-3.png"
-              id="imgC"
-              style="display: none"
-              alt=""
-            />
+          
             <img src="../assets/Grade-4.png" id="imgD" style="" alt="" />
-            <img
-              src="../assets/Grade-5.png"
-              id="imgE"
-              style="display: none"
-              alt=""
-            />
+           
             <span id="levelA">{{ AssessRate.tips }}</span>
           </div>
         </div>
@@ -50,7 +28,7 @@
               </div>
               <div class="flex">
                 <p class="top" id="combinedBillingRate">
-                  {{ AssessRate.risk }}
+                  {{ sum  }}
                 </p>
                 <p>合计费率</p>
               </div>
@@ -100,6 +78,7 @@ export default {
       assessSourList: [],
       reslist: [],
       AssessRate: {},
+      sum:''
     };
   },
   mounted() {
@@ -147,6 +126,7 @@ export default {
 
         this.assessSourList = result.data.data.assessSourList;
         this.AssessRate = result.data.data.AssessRate;
+        this.sum = parseFloat(this.AssessRate.basics.replace('%','')) + parseFloat(this.AssessRate.risk.replace('%',''))+'%';
 
         // this.$router.push("/formList");
       } catch (error) {
@@ -163,17 +143,17 @@ export default {
 <style lang="scss" scoped>
 @media only screen and (min-width: 480px) {
   html {
-    font-size: 25.6px !important;
+    font-size: 28px !important;
   }
 }
 @media only screen and (min-width: 414px) {
   html {
-    font-size: 22.08px !important;
+    font-size: 25px !important;
   }
 }
 @media only screen and (min-width: 400px) {
   html {
-    font-size: 21.33px !important;
+    font-size: 23px !important;
   }
 }
 html {
@@ -225,7 +205,7 @@ a {
 .result-wrap .title {
   line-height: 14px;
   margin-bottom: 25px;
-  font-size: 15px;
+  font-size: 30px;
   color: #fff;
   text-align: center;
 }
@@ -245,7 +225,7 @@ a {
  
 }
 .result-wrap .grade span {
-  font-size: 27px;
+  font-size: 33px;
   color: #fff;
   font-weight: bold;
 }
@@ -270,7 +250,7 @@ a {
 
   border-radius: 20px;
   background-size: 100% 100%;
-  font-size: 18px;
+  font-size: 30px;
   font-family: "Source Han Sans CN";
   // font-weight: 50;
   color: #343434;
@@ -298,7 +278,7 @@ a {
   display: flex;
 }
 p {
-  font-size: 21px;
+  font-size: 28px;
   display: block;
   // margin-block-start: 1em;
   // margin-block-end: 1em;
@@ -308,7 +288,7 @@ p {
 }
 .result-wrap .rate-list .top {
   margin-bottom: 16px;
-  font-size: 25px;
+  font-size: 28px;
 }
 
 .result-wrap .score {
@@ -317,7 +297,7 @@ p {
   justify-content: space-between;
 }
 .result-wrap .score .top-num {
-  font-size: 28px;
+  font-size: 30px;
   color: #ad2926;
   line-height: 28px;
   margin-bottom: 8px;
@@ -328,34 +308,50 @@ p {
   border-radius: 4px;
   overflow: hidden;
 }
+.details-list .title-details{
+  margin-bottom: 5px;
+}
 .details-list .list-item {
+  display: flex;
+  align-items: center;
+  // height: 37px;
+  // line-height: 37px;
+  
   background: #f8f8f8;
-  padding: 0 14px;
+  // padding: 0 14px;
   text-align: left;
-  line-height: 37px;
-  height: 37px;
-  margin-bottom: 1px;
-  justify-content: space-between;
+  padding: 5px;
+  // line-height: 37px;
+  // height: 50px;
+  margin-bottom: 10px;
+  // justify-content: space-between;
+  width: 100%;
 }
 .details-list .title-details img {
-  width: 15px;
-  height: 19px;
+  width: 20px;
+  height: 25px;
   margin-right: 5px;
   margin-top: -5px;
   vertical-align: middle;
 }
 .details-list .title-details span {
-  font-size: 18px;
+  font-size: 27px;
   color: #343434;
   font-weight: bold;
   font-family: "Source Han Sans CN";
 }
 .details-list .list-item .list-db {
-  font-size: 12px;
+  margin-top: 10px;
+display: flex;
+align-items: center;
+  width: 90%;
+  // display: flex;
+  font-size: 25px;
   color: #343434;
+  flex-wrap: wrap;
 }
 .details-list .list-item .list-fb {
-  font-size: 12px;
+  font-size: 22px;
   color: #fd801c;
 }
 </style>

@@ -20,6 +20,7 @@
                   :key="it.aid"
                   :label="it.aid"
                   class="el-radio"
+             
                   @change="handleRadioChanges(item, it.aid)"
                 >
                   {{ it.answer }}
@@ -201,21 +202,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media only screen and (min-width: 480px) {
-  html {
-    font-size: 25.6px !important;
-  }
-}
-@media only screen and (min-width: 414px) {
-  html {
-    font-size: 22.08px !important;
-  }
-}
-@media only screen and (min-width: 400px) {
-  html {
-    font-size: 21.33px !important;
-  }
-}
+// @media only screen and (min-width: 480px) {
+//   html {
+//     font-size: 28px !important;
+//   }
+// }
+// @media only screen and (min-width: 414px) {
+//   html {
+//     font-size: 25px !important;
+//   }
+// }
+// @media only screen and (min-width: 400px) {
+//   html {
+//     font-size: 23px !important;
+//   }
+// }
 
 /*通配符号让所有标签的margin和padding为0*/
 * {
@@ -254,10 +255,11 @@ body {
 }
 .harder {
   font-weight: bold;
-  font-size: 23px;
+  font-size: 27px;
 
   height: 68px;
-  // position: fixed;
+  position: fixed;
+    // margin-bottom: 80px;
   // left: 0;
   // right: 0;
   // top: 0;
@@ -274,20 +276,22 @@ body {
   box-shadow: 0px 3px 5px 0px #b0b0b0;
 }
 .harder .title {
-  font-size: 28px;
+  font-size: 32px;
   color: #fff;
 }
 .radio-lis {
+
   padding: 29px 26px;
   text-align: left;
 }
 .radio-wrap {
+  margin-top: 80px;
   margin-bottom: 10px;
 }
 
 .radio-wrap .title {
   margin-top: 10px;
-  font-size: 23px;
+  font-size: 32px;
   font-weight: bold;
   color: #343434;
   position: relative;
@@ -307,20 +311,24 @@ body {
   display: block;
   margin: 10px 0;
   white-space: normal;
-  font-size: 18px !important;
+  font-size: 28px !important;
   color: #343434;
   // line-height: 17px;
+}
+::v-deep .el-radio__label{
+  font-size: 29px !important;
+
 }
 .next-step {
   padding: 2px 28px 0;
 }
 .next-step button {
   width: 100%;
-  height: 58px;
-  line-height: 46px;
+  height: 80px;
+  line-height: 80px;
   font-weight: bold;
 
-  font-size: 23px;
+  font-size: 27px;
   border-radius: 4px;
   color: #fff;
   border: none;
