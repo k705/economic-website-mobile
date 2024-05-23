@@ -51,6 +51,7 @@ export default {
         radioArray: [],
       },
       reslist: [],
+      typeFromQuery:'',
       selectedAnswers:[],
       list2: [
         {
@@ -95,13 +96,23 @@ export default {
       ],
     };
   },
+    created() {  
+      
+  },  
   mounted() {
     this.addClient();
   },
   methods: {
+    
     async addClient() {
+      console.log(this.$route,'this.$route');
+    // 在组件创建时，从路由的查询参数中获取 type  
+    this.typeFromQuery = this.$route.query.type;  
+  
+    // 现在您可以在组件中使用 this.typeFromQuery  
+    console.log(this.typeFromQuery,'this.typeFromQuery');  
       try {
-        const result = await reqParameter();
+        const result = await reqParameter(this.typeFromQuery);
         this.list2 = result.data.rows;
         console.log(this.list2);
         // this.$router.push("/result");

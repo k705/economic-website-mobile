@@ -37,6 +37,11 @@
             >
             </el-input>
           </div>
+           <el-radio-group v-model="type">
+    <el-radio label="1"  @change="handleRadioChanges()">上班</el-radio>
+    <el-radio label="2" @change="handleRadioChanges()">个体户</el-radio>
+    <el-radio label="3" @change="handleRadioChanges()">有限公司</el-radio>
+  </el-radio-group>
         </div>
         <div class="next-step">
           <el-button type="primary" @click="goFormList">下一步</el-button>
@@ -55,7 +60,7 @@ export default {
     return {
          name: "",
         identity: "",
-      
+      type:''
     };
   },
   mounted() {
@@ -71,17 +76,23 @@ export default {
         this.$message.error("请输入您的身份证号");
         return;
       }
-      if (this.name && this.identity) {
+       if (!this.type) {
+        this.$message.error("请选择您的身份性质");
+        return;
+      }
+      if (this.name && this.identity && this.type) {
         this.addClient();
       }
     },
-
+handleRadioChanges(){
+  console.log(this.type);
+},
     async addClient() {
       try {
         // console.log(111);
-        const result = await reqAddClient({name:this.name,identity:this.identity});
+        const result = await reqAddClient({name:this.name,identity:this.identity,type:this.type});
 
-        this.$router.push("/formList");
+        this.$router.push({ path: '/formList', query: { type: this.type } });
       } catch (error) {
         
         return;
@@ -192,6 +203,23 @@ a {
     height: 70px;
     font-size: 29px;
 }
+::v-deep .el-radio-group{
+margin-top: 40px;
+}
+::v-deep .el-radio__label{
+font-size: 29px;
+
+}
+::v-deep .el-radio{
+  margin-left: 70px;
+}
+::v-deep .el-radio__inner {
+  width: 30px;
+  height: 30px;
+}
+::v-deep .el-radio__input{
+  line-height: 2;
+}
 .display-flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -235,7 +263,7 @@ a {
 // }
 .next-step {
   position: fixed;
-  top: 450px;
+  top: 550px;
   left: 50%;
   transform: translate(-50%, 0);
   // padding: 2px 28px 0;
